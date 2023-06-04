@@ -53,7 +53,23 @@ This project is part of the curriculum at 42 School, where students learn variou
 
 ## Resources
 
-- [Dining Philosophers Problem - Wikipedia](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
-- [Introduction to Concurrency - GeeksforGeeks](https://www.geeksforgeeks.org/introduction-of-concurrency-control/)
-- [POSIX Threads Programming - Linux man pages](https://man7.org/linux/man-pages/man7/pthreads.7.html)
+- [Les bases de la programmation concurrente en C](https://zestedesavoir.com/tutoriels/722/les-bases-de-la-programmation-concurrente-en-c/)
+
+- [Introduction to POSIX Threads](https://www.geeksforgeeks.org/introduction-posix-threads/)
+
+- [Concurrency in C](https://www.cs.cf.ac.uk/Dave/C/CE.html)
+
+- [La page de manuel pthreads](https://man7.org/linux/man-pages/man7/pthreads.7.html)
+
+- [La page de manuel des fonctions système en C](https://man7.org/linux/man-pages/man2/)
+
+- [The Little Book of Semaphores](http://greenteapress.com/wp/semaphores/)
+
+- [POSIX Threads Programming](https://www.cs.cf.ac.uk/Dave/C/CE.html)
+
+- [Thread Synchronization in C](https://www.geeksforgeeks.org/thread-synchronization-in-c/)
+
+- [Introduction to Multithreading in C](https://www.tutorialspoint.com/multithreading-in-c)
+
+- [C Programming - Multithreading](https://www.studytonight.com/c/multithreading-in-c.php)
 
