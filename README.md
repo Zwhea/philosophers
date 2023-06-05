@@ -53,10 +53,6 @@ This project is part of the curriculum at 42 School, where students learn variou
 
 ## Resources
 
-- [Les bases de la programmation concurrente en C](https://zestedesavoir.com/tutoriels/722/les-bases-de-la-programmation-concurrente-en-c/)
-
-- [Introduction to POSIX Threads](https://www.geeksforgeeks.org/introduction-posix-threads/)
-
 - [Concurrency in C](https://www.cs.cf.ac.uk/Dave/C/CE.html)
 
 - [La page de manuel pthreads](https://man7.org/linux/man-pages/man7/pthreads.7.html)
