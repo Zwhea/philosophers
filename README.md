@@ -69,3 +69,4 @@ This project is part of the curriculum at 42 School, where students learn variou
 
 - [C Programming - Multithreading](https://www.studytonight.com/c/multithreading-in-c.php)
 
+- [Introduction to Thread](https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2)
