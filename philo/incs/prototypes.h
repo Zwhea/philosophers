@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:50:59 by twang             #+#    #+#             */
-/*   Updated: 2023/06/07 15:31:14 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/08 10:56:23 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,21 @@
 
 # include "structures.h"
 
-/*---- ft_atoi.c -------------------------------------------------------------*/
-
-int		ft_atoi(char *str);
-
 /*---- init_philo.c ----------------------------------------------------------*/
 
 void	init_philosophers(t_data *data);	
 
 /*---- parsing.c -------------------------------------------------------------*/
 
-int		parse_arguments(t_data *data, char **av);
+int		parse_arguments(t_data *data, int ac, char **av);
 
 /*---- print.c ---------------------------------------------------------------*/
 
 void	print_error(char *msg);
+
+/*---- utils.c -------------------------------------------------------------*/
+
+int		ft_atoi(char *str);
+void	ft_bzero(void *dst, size_t n);
 
 #endif

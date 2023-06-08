@@ -6,7 +6,7 @@
 #    By: twang <twang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 14:09:46 by twang             #+#    #+#              #
-#    Updated: 2023/06/06 11:12:12 by twang            ###   ########.fr        #
+#    Updated: 2023/06/08 10:04:00 by twang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,7 @@ CFLAGS		=	-Wall -Wextra -I $(INC_DIR) #-Werror
 
 #--debug flags-----------------------------------------------------------------#
 
-DFLAGS		=	-g3 -fsanitize=thread
-
+DFLAGS		=	-g3 -fsanitize=address #-fsanitize=thread
 ifeq ($(DEBUG), yes)
 CFLAGS 		+=	$(DFLAGS)
 endif

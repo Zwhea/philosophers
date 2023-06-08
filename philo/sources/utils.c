@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 22:21:51 by wangthea          #+#    #+#             */
-/*   Updated: 2023/06/07 15:20:14 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/08 10:56:09 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	ft_atoi(char *str)
 	long int		result;
 
 	result = 0;
-	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
-		str++;
+	if (!str)
+		return (-1);
 	if (*str == 43 || *str == 45)
 		return (-1);
 	while (*str)
@@ -33,4 +33,20 @@ int	ft_atoi(char *str)
 			return (-1);
 	}
 	return ((int)(result));
+}
+static void	*ft_memset(void *dst, int c, size_t length)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < length)
+	{
+		*(unsigned char *)(dst + i) = (unsigned char)c;
+		i++;
+	}
+	return (dst);
+}
+void	ft_bzero(void *dst, size_t n)
+{
+	ft_memset(dst, 0, n);
 }

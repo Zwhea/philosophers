@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:05:22 by twang             #+#    #+#             */
-/*   Updated: 2023/06/07 15:06:01 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/08 13:00:45 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	init_philosophers(t_data *data)
 {
-	puts("hahahaha");
+	if (alloc_memory(data) != 0)
+		return (-1);
+	
 }
