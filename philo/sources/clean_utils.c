@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clean_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 15:45:46 by twang             #+#    #+#             */
-/*   Updated: 2023/06/09 15:45:02 by twang            ###   ########.fr       */
+/*   Created: 2023/06/09 14:06:11 by twang             #+#    #+#             */
+/*   Updated: 2023/06/09 14:15:48 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+void	mutex_destroyer(t_data *data)
 {
-	t_data	data;
+	int	philo_id;
 
-	if (ac == 5 || ac == 6)
+	philo_id = 0;
+	pthread_mutex_destroy(&(data->whistleblower));
+	while (philo_id <= data->nb_of_philo)
 	{
-		ft_bzero((void *)&data, sizeof(t_data));
-		if (parse_arguments(&data, ac, av) == 0)
-		{
-			if (init_philosophers(&data) != 0)
-				return (-1);
-			if (routine_philosophers(&data) != 0)
-				return (-1);
-		}
+		pthread_mutex_destroy(&(data->table[philo_id].m_left_fork));
 	}
-	else
-		print_error("wrong number of arguments");
-	return (0);
 }

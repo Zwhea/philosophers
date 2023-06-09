@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:50:40 by twang             #+#    #+#             */
-/*   Updated: 2023/06/08 11:38:38 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/09 14:27:59 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,25 @@ typedef struct s_philo	t_philo;
 
 struct	s_data
 {
-	int			nb_of_philo;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			must_eat;
-	bool		is_dead;
-	pthread_t	thread_id;
-
-	t_philo		*table;
+	int				nb_of_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat;
+	bool			is_dead;
+	pthread_mutex_t	whistleblower;
+	t_philo			*table;
 };
 
 struct	s_philo
 {
-	int			id;
-	pthread_t	thread_id;
-	t_data		*shared;
+	int				id;
+	pthread_t		thread_id;
+	pthread_mutex_t	m_left_fork;
+	pthread_mutex_t	*m_right_fork;
+	int				left_fork;
+	int				*right_fork;
+	t_data			*shared;
 };
 
 #endif

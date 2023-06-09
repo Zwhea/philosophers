@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 22:21:51 by wangthea          #+#    #+#             */
-/*   Updated: 2023/06/08 10:56:09 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/09 15:21:51 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	ft_atoi(char *str)
 	}
 	return ((int)(result));
 }
+
 static void	*ft_memset(void *dst, int c, size_t length)
 {
 	size_t	i;
@@ -46,7 +47,21 @@ static void	*ft_memset(void *dst, int c, size_t length)
 	}
 	return (dst);
 }
+
 void	ft_bzero(void *dst, size_t n)
 {
 	ft_memset(dst, 0, n);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*array;
+
+	if (size > 0 && count > (SIZE_MAX / size))
+		return (NULL);
+	array = malloc(count * size);
+	if (!array)
+		return (NULL);
+	ft_bzero(array, count * size);
+	return (array);
 }

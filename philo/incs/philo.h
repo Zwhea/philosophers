@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 13:51:38 by twang             #+#    #+#             */
-/*   Updated: 2023/06/07 15:04:45 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/09 15:31:49 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 # include <sys/time.h>
 # include <pthread.h>
 
