@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:38:24 by twang             #+#    #+#             */
-/*   Updated: 2023/06/09 17:34:54 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/09 17:38:36 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	routine_philosophers(t_data *data)
 {
 	int	i;
 
-	i = 1;
-	while (i <= data->nb_of_philo)
+	i = 0;
+	while (i < data->nb_of_philo)
 	{
-		printf("%d\n", i <= data->nb_of_philo);
+		printf("je suis %d\n", data->table[i].id);
 		pthread_create(&data->table[i].thread_id, NULL, (void *)_routine, &(data->table[i]));
 		i++;
 	}

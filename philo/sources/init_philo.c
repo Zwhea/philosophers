@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:05:22 by twang             #+#    #+#             */
-/*   Updated: 2023/06/09 17:33:20 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/09 17:37:56 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	_init_mutex_philo(t_data *data, int ph_id);
 
 int	init_philosophers(t_data *data)
 {
-	data->table = (t_philo *)malloc(data->nb_of_philo * sizeof(t_philo));
+	data->table = (t_philo *)ft_calloc(data->nb_of_philo + 1, sizeof(t_philo));
 	if (!data->table)
 	{
 		perror("malloc: table of philos");
