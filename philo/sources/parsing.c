@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:48:36 by twang             #+#    #+#             */
-/*   Updated: 2023/06/08 10:52:34 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/12 18:12:35 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	parse_arguments(t_data *data, int ac, char **av)
 {
 	data->nb_of_philo = ft_atoi(av[1]);
-	data->time_to_die = ft_atoi(av[2]);
+	data->time_to_die = ((ft_atoi(av[2]) % 1000) * 1000);
 	data->time_to_eat = ft_atoi(av[3]);
 	data->time_to_sleep = ft_atoi(av[4]);
 	if (data->nb_of_philo <= 0 || data->time_to_die <= 0 \
@@ -37,5 +37,6 @@ int	parse_arguments(t_data *data, int ac, char **av)
 		printf(YELLOW"philo: warning: "END);
 		printf("the program might not run correctly with those values.\n");
 	}
+	printf("%ld && %ld\n", time.tv_sec, time.tv_usec);
 	return (0);
 }

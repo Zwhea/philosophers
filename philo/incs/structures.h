@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:50:40 by twang             #+#    #+#             */
-/*   Updated: 2023/06/12 13:12:04 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/12 18:19:14 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ typedef struct s_philo	t_philo;
 struct	s_data
 {
 	int				nb_of_philo;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
+	struct timeval	time_to_start;
+	int				time_to_die;	//struct time val o long int???
+	int				time_to_eat;	//struct time val o long int???
+	int				time_to_sleep;	//struct time val o long int???
 	int				must_eat;
 	bool			is_dead;
 	pthread_mutex_t	whistleblower;
@@ -40,6 +41,8 @@ struct	s_philo
 	pthread_mutex_t	*m_right_fork;
 	int				left_fork;
 	int				*right_fork;
+	int				start_eating;
+	int				end;
 	t_data			*shared;
 };
 

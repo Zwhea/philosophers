@@ -6,7 +6,7 @@
 #    By: twang <twang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 14:09:46 by twang             #+#    #+#              #
-#    Updated: 2023/06/08 10:04:00 by twang            ###   ########.fr        #
+#    Updated: 2023/06/12 16:30:20 by twang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ include config/headers.mk
 
 NAME		=	philo
 DEBUG		=	no
+VALGRIND	=	no
 TWANG		=	\e]8;;https://profile.intra.42.fr/users/twang\a\e[34mtwang\e[34m\e]8;;\a
 
 #--includes--------------------------------------------------------------------#
@@ -37,10 +38,12 @@ CFLAGS		=	-Wall -Wextra -I $(INC_DIR) #-Werror
 
 #--debug flags-----------------------------------------------------------------#
 
-DFLAGS		=	-g3 -fsanitize=address #-fsanitize=thread
+DFLAGS		=	-g3 -fsanitize=address #-fsanitize=thread -g
 ifeq ($(DEBUG), yes)
 CFLAGS 		+=	$(DFLAGS)
 endif
+
+LEAKS		= valgrind --tool=helgrind --tool=helgrind
 
 #--objects---------------------------------------------------------------------#
 
@@ -65,10 +68,15 @@ $(OBJ_DIR)/%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 	$(PRINT_COMPILING)
 
-#--debugs----------------------------------------------------------------------#
+#--debugs & errors detector----------------------------------------------------#
 
 debug:
 	$(MAKE) re -j DEBUG=yes
+
+leaks:
+	clear
+	$(MAKE) re -j VALGRIND=yes
+	$(LEAKS) ./philo 5 200 200 200 200
 
 #--print header----------------------------------------------------------------#
 
