@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:50:59 by twang             #+#    #+#             */
-/*   Updated: 2023/06/09 15:43:23 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/12 14:26:43 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 
 # include "structures.h"
 
-/*---- clean_utils.c ---------------------------------------------------------*/
+/*---- end_of_life.c ---------------------------------------------------------*/
 
-void	mutex_destroyer(t_data *data);
+int		end_of_life(t_data *data);
+int		mutex_destroyer(t_data *data);
 
 /*---- init_philo.c ----------------------------------------------------------*/
 
@@ -35,7 +36,7 @@ void	print_error(char *msg);
 
 /*---- routine.c -------------------------------------------------------------*/
 
-int	routine_philosophers(t_data *data);
+int		routine_philosophers(t_data *data);
 
 /*---- utils.c ---------------------------------------------------------------*/
 

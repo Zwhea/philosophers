@@ -6,12 +6,12 @@
 #    By: twang <twang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 13:49:41 by twang             #+#    #+#              #
-#    Updated: 2023/06/09 15:33:38 by twang            ###   ########.fr        #
+#    Updated: 2023/06/12 14:20:42 by twang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES =																	\
-				sources/clean_utils.c										\
+				sources/end_of_life.c										\
 				sources/init_philo.c										\
 				sources/main.c												\
 				sources/parsing.c											\

@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:05:22 by twang             #+#    #+#             */
-/*   Updated: 2023/06/09 17:37:56 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/12 13:58:08 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,20 @@ static int	_init_mutex_philo(t_data *data, int ph_id);
 
 int	init_philosophers(t_data *data)
 {
-	data->table = (t_philo *)ft_calloc(data->nb_of_philo + 1, sizeof(t_philo));
+	data->table = (t_philo *)ft_calloc(data->nb_of_philo, sizeof(t_philo));
 	if (!data->table)
 	{
-		perror("malloc: table of philos");
+		perror("ft_calloc: table of philos");
 		return (-1);
 	}
 	if (_init_mutex(data) != 0)
 	{
-		puts("ivi");
 		free(data->table);
 		return (-2);
 	}
 	pthread_mutex_lock(&(data->whistleblower));
 	if (_create_philo(data) != 0)
 	{
-		puts("ivi");
 		free(data->table);
 		mutex_destroyer(data);
 		return (-2);
@@ -92,7 +90,7 @@ static int	_init_mutex_philo(t_data *data, int ph_id)
 	if (pthread_mutex_init(&(data->table[ph_id].m_left_fork), NULL) != 0)
 	{
 		perror("mutex_init: philo init");
-		while (--ph_id >= -1)
+		while (--ph_id > -1)
 			pthread_mutex_destroy(&(data->table[ph_id].m_left_fork));
 		return (-2);
 	}

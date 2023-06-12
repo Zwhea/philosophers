@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:45:46 by twang             #+#    #+#             */
-/*   Updated: 2023/06/09 15:45:02 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/12 14:24:40 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	main(int ac, char **av)
 			if (init_philosophers(&data) != 0)
 				return (-1);
 			if (routine_philosophers(&data) != 0)
+				return (-1);
+			if (end_of_life(&data) != 0)
 				return (-1);
 		}
 	}
