@@ -6,7 +6,7 @@
 #    By: twang <twang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 14:09:46 by twang             #+#    #+#              #
-#    Updated: 2023/06/13 14:59:46 by twang            ###   ########.fr        #
+#    Updated: 2023/06/13 18:25:02 by twang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ include config/headers.mk
 #--variables-------------------------------------------------------------------#
 
 NAME		=	philo
-DEBUG		=	no
+DEBUG_A		=	no
+DEBUG_T		=	no
 VALGRIND	=	no
 TWANG		=	\e]8;;https://profile.intra.42.fr/users/twang\a\e[34mtwang\e[34m\e]8;;\a
 
@@ -36,14 +37,19 @@ OBJ_DIR		=	.objs
 
 CFLAGS		=	-Wall -Wextra -I $(INC_DIR) #-Werror
 
-#--debug flags-----------------------------------------------------------------#
+#--debug & leaks flags---------------------------------------------------------#
 
-DFLAGS		=	-g3 -fsanitize=address #-fsanitize=thread -g
-ifeq ($(DEBUG), yes)
+DFLAGS		=	-g3 -fsanitize=address
+ifeq ($(DEBUG_A), yes)
 CFLAGS 		+=	$(DFLAGS)
 endif
 
-LEAKS		= valgrind --tool=helgrind
+DFLAGS		=	-g -fsanitize=thread
+ifeq ($(DEBUG_T), yes)
+CFLAGS 		+=	$(DFLAGS)
+endif
+
+LEAKS		= valgrind --tool=helgrind #--tool=drd
 
 #--objects---------------------------------------------------------------------#
 
@@ -70,8 +76,11 @@ $(OBJ_DIR)/%.o: %.c $(HEADERS)
 
 #--debugs & errors detector----------------------------------------------------#
 
-debug:
-	$(MAKE) re -j DEBUG=yes
+debug_address:
+	$(MAKE) re -j DEBUG_A=yes
+
+debug_thread:
+	$(MAKE) re -j DEBUG_T=yes
 
 leaks:
 	clear
