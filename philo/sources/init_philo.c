@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:05:22 by twang             #+#    #+#             */
-/*   Updated: 2023/06/12 13:58:08 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/13 16:21:47 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,22 @@ int	init_philosophers(t_data *data)
 		free(data->table);
 		return (-2);
 	}
-	pthread_mutex_lock(&(data->whistleblower));
 	if (_create_philo(data) != 0)
 	{
 		free(data->table);
 		mutex_destroyer(data);
 		return (-2);
 	}
-	pthread_mutex_unlock(&(data->whistleblower));
 	return (0);
 }
 
 static int	_init_mutex(t_data *data)
 {
+	if (pthread_mutex_init(&(data->philo_maker), NULL) != 0)
+	{
+		perror("mutex_init: philo_maker init");
+		return (-2);
+	}
 	if (pthread_mutex_init(&(data->whistleblower), NULL) != 0)
 	{
 		perror("mutex_init: whistleblower init");

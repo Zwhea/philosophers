@@ -6,7 +6,7 @@
 #    By: twang <twang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 14:09:46 by twang             #+#    #+#              #
-#    Updated: 2023/06/12 16:30:20 by twang            ###   ########.fr        #
+#    Updated: 2023/06/13 14:59:46 by twang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ ifeq ($(DEBUG), yes)
 CFLAGS 		+=	$(DFLAGS)
 endif
 
-LEAKS		= valgrind --tool=helgrind --tool=helgrind
+LEAKS		= valgrind --tool=helgrind
 
 #--objects---------------------------------------------------------------------#
 

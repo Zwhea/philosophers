@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:50:59 by twang             #+#    #+#             */
-/*   Updated: 2023/06/12 14:26:43 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/13 15:35:27 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ void	print_error(char *msg);
 /*---- routine.c -------------------------------------------------------------*/
 
 int		routine_philosophers(t_data *data);
+
+/*---- time_utils.c ----------------------------------------------------------*/
+
+bool			timeval_is_inf(struct timeval a, struct timeval b);
+struct timeval	int_to_timeval(int time_in_int);
+struct timeval	substract_timeval(struct timeval a, struct timeval b);
+int				display_routine(t_data *data, int id_philo, char *msg);
 
 /*---- utils.c ---------------------------------------------------------------*/
 

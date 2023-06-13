@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:50:40 by twang             #+#    #+#             */
-/*   Updated: 2023/06/12 18:19:14 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/13 18:05:08 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ struct	s_data
 {
 	int				nb_of_philo;
 	struct timeval	time_to_start;
-	int				time_to_die;	//struct time val o long int???
-	int				time_to_eat;	//struct time val o long int???
-	int				time_to_sleep;	//struct time val o long int???
+	struct timeval	time_to_die;
+	struct timeval	time_to_eat;
+	struct timeval	time_to_sleep;
 	int				must_eat;
-	bool			is_dead;
+	bool			the_end;
+	pthread_mutex_t	philo_maker;
 	pthread_mutex_t	whistleblower;
 	t_philo			*table;
 };

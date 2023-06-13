@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:38:24 by twang             #+#    #+#             */
-/*   Updated: 2023/06/12 18:12:16 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/13 18:15:12 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*---- prototypes ------------------------------------------------------------*/
 
-static void	_routine(t_data *data);
+static void	_routine(t_philo *philo);
 
 /*----------------------------------------------------------------------------*/
 
@@ -23,6 +23,7 @@ int	routine_philosophers(t_data *data)
 	int	i;
 
 	i = 0;
+	pthread_mutex_lock(&(data->philo_maker));
 	while (i < data->nb_of_philo)
 	{
 		if (pthread_create(&data->table[i].thread_id, NULL, (void *)_routine, \
@@ -34,18 +35,27 @@ int	routine_philosophers(t_data *data)
 		i++;
 	}
 	if (gettimeofday(&data->time_to_start, NULL) == -1)
+	{
+		printf("failed to get starting time\n");
 		return (-1);
+	}
+	pthread_mutex_unlock(&(data->philo_maker));
 	return (0);
 }
 
-void	_routine(t_data *data)
+static void	_routine(t_philo *philo)
 {
-
-	/*
-	( ms % 1000 )* 1000;
-	je ne sais pas quoi faire :
-		- je crois qu'il faut que je recupere le time of the day avec gettimeofday
-		- je les fais penser;
-	*/
-	puts(YELLOW"ici"END);
+	pthread_mutex_lock(&(philo->shared->philo_maker));
+	pthread_mutex_unlock(&(philo->shared->philo_maker));
+	pthread_mutex_lock(&(philo->shared->whistleblower));
+	while (philo->shared->the_end == false)
+	{
+		if (display_routine(philo->shared, philo->id, "is thinking") != 0)
+			printf("error of display");
+		if (gettimeofday(&philo->shared->time_to_start, NULL) == -1)
+			printf("failed to get update starting time\n");
+		if (timeval_is_inf(philo->shared->time_to_die, philo->shared->time_to_start) == false)
+			philo->shared->the_end = true;
+	}
+	pthread_mutex_unlock(&(philo->shared->whistleblower));
 }
