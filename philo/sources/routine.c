@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:38:24 by twang             #+#    #+#             */
-/*   Updated: 2023/06/13 18:15:12 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/14 13:06:52 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,8 @@ static void	_routine(t_philo *philo)
 	pthread_mutex_lock(&(philo->shared->philo_maker));
 	pthread_mutex_unlock(&(philo->shared->philo_maker));
 	pthread_mutex_lock(&(philo->shared->whistleblower));
-	while (philo->shared->the_end == false)
-	{
-		if (display_routine(philo->shared, philo->id, "is thinking") != 0)
-			printf("error of display");
-		if (gettimeofday(&philo->shared->time_to_start, NULL) == -1)
-			printf("failed to get update starting time\n");
-		if (timeval_is_inf(philo->shared->time_to_die, philo->shared->time_to_start) == false)
-			philo->shared->the_end = true;
-	}
+	thinking(philo);
+	eating(philo);
+	sleeping(philo);
 	pthread_mutex_unlock(&(philo->shared->whistleblower));
 }

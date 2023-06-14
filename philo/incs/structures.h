@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:50:40 by twang             #+#    #+#             */
-/*   Updated: 2023/06/13 18:05:08 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/14 11:05:13 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ struct	s_philo
 	pthread_mutex_t	*m_right_fork;
 	int				left_fork;
 	int				*right_fork;
-	int				start_eating;
+	int				start_meal;
 	int				end;
 	t_data			*shared;
 };

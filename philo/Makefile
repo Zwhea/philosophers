@@ -6,7 +6,7 @@
 #    By: twang <twang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 14:09:46 by twang             #+#    #+#              #
-#    Updated: 2023/06/13 18:25:02 by twang            ###   ########.fr        #
+#    Updated: 2023/06/14 09:45:14 by twang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,9 @@ leaks:
 header:
 	printf "\n${PURPLE}project:\t${END}${BLUE}philosophers${END}\n"
 	printf "${PURPLE}author:\t\t${END}${BLUE}${TWANG}${END}\n"
-	printf "${PURPLE}debug mode:\t${END}${BLUE}${DEBUG}${END}\n"
+	printf "${PURPLE}address mode:\t${END}${BLUE}${DEBUG_A}${END}\n"
+	printf "${PURPLE}thread mode:\t${END}${BLUE}${DEBUG_T}${END}\n"
+	printf "${PURPLE}leaks mode:\t${END}${BLUE}${VALGRIND}${END}\n"
 	printf "${PURPLE}compiler:\t${END}${BLUE}${CC}${END}\n"
 	printf "${PURPLE}flags:\t\t${END}${BLUE}${CFLAGS}${END}\n"
 	printf "${PURPLE}date:\t\t${END}${BLUE}2023/06/05${END}\n"
@@ -117,4 +119,4 @@ fclean:
 
 #--PHONY-----------------------------------------------------------------------#
 
-.PHONY: all debug header re clean fclean
+.PHONY: all debug_address debug_thread leaks header re clean fclean
