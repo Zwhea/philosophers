@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:01:27 by twang             #+#    #+#             */
-/*   Updated: 2023/06/15 18:56:18 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/15 19:09:20 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ void	eating(t_philo *philo)
 
 void	sleeping(t_philo *philo)
 {
+	philo->start_sleep = get_current_time(philo);
+	philo->end_sleep = add_timeval(philo->start_sleep, \
+												philo->shared->time_to_eat);
+	philo->lifespan = add_timeval(philo->start_sleep, \
+												philo->shared->time_to_die);
 	pthread_mutex_lock(&(philo->shared->whistleblower));
 	if (display_routine(philo->shared, philo->id, "is sleeping") != 0)
 	{
@@ -73,7 +78,11 @@ void	sleeping(t_philo *philo)
 		return ;
 	}
 	pthread_mutex_unlock(&(philo->shared->whistleblower));
-	usleep(10000);
+	while (timeval_is_inf(get_current_time(philo), philo->end_sleep) != false)
+	{
+		if (philo->is_dead == true)
+			return ;
+	}
 }
 
 static int	_take_fork(t_philo *philo, pthread_mutex_t mutex, int *fork)

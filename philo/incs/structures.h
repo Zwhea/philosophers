@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:50:40 by twang             #+#    #+#             */
-/*   Updated: 2023/06/15 18:30:31 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/15 19:07:21 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ struct	s_philo
 	int				*right_fork;
 	struct timeval	start_meal;
 	struct timeval	end_meal;
+	struct timeval	start_sleep;
+	struct timeval	end_sleep;
 	bool			is_dead;
 	struct timeval	lifespan;
 	t_data			*shared;
