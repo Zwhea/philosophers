@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:01:27 by twang             #+#    #+#             */
-/*   Updated: 2023/06/15 18:51:06 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/15 18:56:18 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ void	thinking(t_philo *philo)
 void	eating(t_philo *philo)
 {
 	philo->start_meal = get_current_time(philo);
-	philo->end_meal = add_timeval(philo->start_meal, philo->shared->time_to_eat);
-	philo->lifespan = add_timeval(philo->start_meal, philo->shared->time_to_die);
+	philo->end_meal = add_timeval(philo->start_meal, \
+												philo->shared->time_to_eat);
+	philo->lifespan = add_timeval(philo->start_meal, \
+												philo->shared->time_to_die);
 	pthread_mutex_lock(&(philo->shared->whistleblower));
 	if (display_routine(philo->shared, philo->id, "is eating") != 0)
 	{

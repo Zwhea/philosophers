@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:56:53 by twang             #+#    #+#             */
-/*   Updated: 2023/06/15 18:19:26 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/15 18:58:27 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,11 @@ struct timeval	add_timeval(struct timeval a, struct timeval b)
 
 struct timeval	get_current_time(t_philo *philo)
 {
-	struct timeval current_time;
+	struct timeval	current_time;
 
 	if (gettimeofday(&current_time, NULL) == -1)
 		printf("failed to get current time\n");
-	current_time = substract_timeval(current_time, philo->shared->time_to_start);
+	current_time = substract_timeval(current_time, \
+										philo->shared->time_to_start);
 	return (current_time);
 }
