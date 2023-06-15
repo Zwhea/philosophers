@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:45:46 by twang             #+#    #+#             */
-/*   Updated: 2023/06/12 14:24:40 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/15 17:11:21 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int	main(int ac, char **av)
 		}
 	}
 	else
-		print_error("wrong number of arguments");
+		return (print_error("wrong number of arguments", -1));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:01:03 by twang             #+#    #+#             */
-/*   Updated: 2023/06/12 14:43:40 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/15 16:36:27 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	_wait_for_philo(t_data *data, int philo_id)
 	{
 		if (pthread_join(data->table[philo_id].thread_id, NULL) != 0)
 		{
-			perror("pthread_join: error");
+			printf("pthread_join: error\n");
 			return (-1);
 		}
 	}
@@ -58,7 +58,7 @@ int	mutex_destroyer(t_data *data)
 	{
 		if (pthread_mutex_destroy(&(data->table[philo_id].m_left_fork)) != 0)
 		{
-			perror("pthread_mutext_destroy: error");
+			printf("pthread_mutext_destroy: error\n");
 			return (-1);
 		}
 		philo_id++;

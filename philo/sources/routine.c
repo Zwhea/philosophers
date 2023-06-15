@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:38:24 by twang             #+#    #+#             */
-/*   Updated: 2023/06/14 13:06:52 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/15 18:50:33 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*---- prototypes ------------------------------------------------------------*/
 
-static void	_routine(t_philo *philo);
+static int	_routine(t_philo *philo);
 
 /*----------------------------------------------------------------------------*/
 
@@ -28,28 +28,28 @@ int	routine_philosophers(t_data *data)
 	{
 		if (pthread_create(&data->table[i].thread_id, NULL, (void *)_routine, \
 								&(data->table[i])) != 0)
-		{
-			perror("pthread_create: error");
-			return (-1);
-		}
+			return (return_error("thread create: failed", -4));
 		i++;
 	}
 	if (gettimeofday(&data->time_to_start, NULL) == -1)
-	{
-		printf("failed to get starting time\n");
-		return (-1);
-	}
+		return (return_error("get time of day: failed", -5));
 	pthread_mutex_unlock(&(data->philo_maker));
 	return (0);
 }
 
-static void	_routine(t_philo *philo)
+static int	_routine(t_philo *philo)
 {
+	philo->is_dead = false;
 	pthread_mutex_lock(&(philo->shared->philo_maker));
 	pthread_mutex_unlock(&(philo->shared->philo_maker));
-	pthread_mutex_lock(&(philo->shared->whistleblower));
-	thinking(philo);
-	eating(philo);
-	sleeping(philo);
-	pthread_mutex_unlock(&(philo->shared->whistleblower));
+	philo->lifespan = philo->shared->time_to_die;
+	if (philo->id % 2 != 0)
+		usleep(1000);
+	while (!(philo->is_dead))
+	{
+		thinking(philo);
+		eating(philo);
+		sleeping(philo);
+	}
+	return (0);
 }

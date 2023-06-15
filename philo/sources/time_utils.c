@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:56:53 by twang             #+#    #+#             */
-/*   Updated: 2023/06/13 17:50:56 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/15 18:19:26 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	timeval_is_inf(struct timeval a, struct timeval b)
 struct timeval	substract_timeval(struct timeval a, struct timeval b)
 {
 	struct timeval	result;
-	
+
 	if (a.tv_usec >= b.tv_usec)
 		result.tv_usec = a.tv_usec - b.tv_usec;
 	else if (a.tv_usec < b.tv_usec)
@@ -47,16 +47,26 @@ struct timeval	substract_timeval(struct timeval a, struct timeval b)
 	return (result);
 }
 
-int	display_routine(t_data *data, int id_philo, char *msg)
+struct timeval	add_timeval(struct timeval a, struct timeval b)
 {
-	struct timeval	current;
+	struct timeval	result;
 
-	if (gettimeofday(&current, NULL) == -1)
+	result.tv_usec = a.tv_usec + b.tv_usec;
+	if (result.tv_usec >= 1000000)
 	{
-		printf("failed to get actual time\n");
-		return(-1);
+		result.tv_sec++;
+		result.tv_usec = result.tv_usec - 1000000;
 	}
-	current = substract_timeval(current, data->time_to_start);
-	printf("%03lu%03ld %d %s\n", current.tv_sec, current.tv_usec / 1000, id_philo, msg);
-	return (0);
+	result.tv_sec = a.tv_sec + b.tv_sec;
+	return (result);
+}
+
+struct timeval	get_current_time(t_philo *philo)
+{
+	struct timeval current_time;
+
+	if (gettimeofday(&current_time, NULL) == -1)
+		printf("failed to get current time\n");
+	current_time = substract_timeval(current_time, philo->shared->time_to_start);
+	return (current_time);
 }
