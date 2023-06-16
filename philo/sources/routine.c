@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:38:24 by twang             #+#    #+#             */
-/*   Updated: 2023/06/16 17:08:59 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/16 17:26:01 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	_thinking(t_philo *philo)
 {
 	int				left;
 	int				right;
-	
+
 	left = 0;
 	right = 0;
 	pthread_mutex_lock(&(philo->shared->whistleblower));
