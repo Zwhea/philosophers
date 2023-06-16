@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:50:59 by twang             #+#    #+#             */
-/*   Updated: 2023/06/15 18:58:49 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/16 16:07:11 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 /*---- activities.c ----------------------------------------------------------*/
 
-void			thinking(t_philo *philo);
-void			eating(t_philo *philo);
-void			sleeping(t_philo *philo);
+int				take_fork(t_philo *philo, pthread_mutex_t *mutex, int *fork);
+void			give_fork(t_philo *philo);
+bool			is_he_dead(t_philo *philo);
 
 /*---- end_of_life.c ---------------------------------------------------------*/
 

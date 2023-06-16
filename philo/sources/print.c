@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:23:12 by twang             #+#    #+#             */
-/*   Updated: 2023/06/15 18:55:47 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/16 17:02:55 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	display_routine(t_data *data, int id_philo, char *msg)
 		return_error("get time of day: failed", -5);
 	current = substract_timeval(current, data->time_to_start);
 	printf("%03lu%03ld %d %s\n", current.tv_sec, current.tv_usec / 1000, \
-			id_philo, msg);
+																id_philo, msg);
 	return (0);
 }

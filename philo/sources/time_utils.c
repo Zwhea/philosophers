@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:56:53 by twang             #+#    #+#             */
-/*   Updated: 2023/06/15 18:58:27 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/16 13:14:33 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ struct timeval	add_timeval(struct timeval a, struct timeval b)
 	struct timeval	result;
 
 	result.tv_usec = a.tv_usec + b.tv_usec;
+	result.tv_sec = a.tv_sec + b.tv_sec;
 	if (result.tv_usec >= 1000000)
 	{
 		result.tv_sec++;
 		result.tv_usec = result.tv_usec - 1000000;
 	}
-	result.tv_sec = a.tv_sec + b.tv_sec;
 	return (result);
 }
 
