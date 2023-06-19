@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:01:27 by twang             #+#    #+#             */
-/*   Updated: 2023/06/16 17:30:04 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/19 14:41:02 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,20 @@ void	give_fork(t_philo *philo)
 	pthread_mutex_unlock(philo->m_right_fork);
 }
 
+void	eaten_all_meals(t_philo *philo)
+{
+	philo->meal++;
+	pthread_mutex_lock(&(philo->shared->watchman));
+	if (philo->meal >= philo->shared->must_eat && philo->meal != -1)
+	{
+		philo->shared->philo_is_full++;
+		philo->meal = -1;
+	}
+	if (philo->shared->philo_is_full == philo->shared->nb_of_philo)
+		philo->shared->the_end = true;
+	pthread_mutex_unlock(&(philo->shared->watchman));
+}
+
 bool	is_he_dead(t_philo *philo)
 {
 	if (timeval_is_inf(get_current_time(philo), philo->lifespan) == false)
@@ -54,6 +68,9 @@ bool	is_he_dead(t_philo *philo)
 			return (true);
 		}
 		pthread_mutex_unlock(&(philo->shared->whistleblower));
+		pthread_mutex_lock(&(philo->shared->watchman));
+		philo->shared->the_end = true;
+		pthread_mutex_unlock(&(philo->shared->watchman));
 		return (true);
 	}
 	return (false);

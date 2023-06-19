@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:48:36 by twang             #+#    #+#             */
-/*   Updated: 2023/06/15 18:57:57 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/19 16:48:26 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	parse_arguments(t_data *data, int ac, char **av)
 	}
 	else if (ac == 5)
 		data->must_eat = -1;
-	if (ft_atoi(av[2]) <= 60 || ft_atoi(av[3]) <= 60 \
-		|| ft_atoi(av[4]) <= 60)
+	if (ft_atoi(av[2]) < 60 || ft_atoi(av[3]) < 60 \
+		|| ft_atoi(av[4]) < 60)
 	{
 		printf(YELLOW"philo: warning: "END);
 		printf("the program might not run correctly with those values.\n");

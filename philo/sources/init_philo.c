@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:05:22 by twang             #+#    #+#             */
-/*   Updated: 2023/06/15 17:07:50 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/19 11:52:29 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	init_philosophers(t_data *data)
 
 static int	_init_mutex(t_data *data)
 {
-	if (pthread_mutex_init(&(data->philo_maker), NULL) != 0)
-		return (return_error("mutex_init: failed philo_maker init", -3));
+	if (pthread_mutex_init(&(data->watchman), NULL) != 0)
+		return (return_error("mutex_init: failed watchman init", -3));
 	if (pthread_mutex_init(&(data->whistleblower), NULL) != 0)
 		return (return_error("mutex_init: failed whistleblower init", -3));
 	return (0);
@@ -77,6 +77,8 @@ static void	_init_table_struct(t_data *data, int ph_id)
 		data->table[ph_id].m_right_fork = &(data->table[ph_id + 1].m_left_fork);
 		data->table[ph_id].right_fork = &(data->table[ph_id + 1].left_fork);
 	}
+	if (data->must_eat == -1)
+		data->table[ph_id].meal = -1;
 }
 
 static int	_init_mutex_philo(t_data *data, int ph_id)
