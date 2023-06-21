@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:01:03 by twang             #+#    #+#             */
-/*   Updated: 2023/06/19 12:25:00 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/21 14:49:41 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	mutex_destroyer(t_data *data)
 	int	philo_id;
 
 	philo_id = 0;
+	pthread_mutex_destroy(&(data->launcher));
+	pthread_mutex_destroy(&(data->watchman));
 	pthread_mutex_destroy(&(data->whistleblower));
 	while (philo_id < data->nb_of_philo)
 	{

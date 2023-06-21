@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:05:22 by twang             #+#    #+#             */
-/*   Updated: 2023/06/19 11:52:29 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/21 14:49:13 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,19 @@ int	init_philosophers(t_data *data)
 
 static int	_init_mutex(t_data *data)
 {
+	if (pthread_mutex_init(&(data->launcher), NULL) != 0)
+		return (return_error("mutex_init: failed launcher init", -3));
 	if (pthread_mutex_init(&(data->watchman), NULL) != 0)
+	{
+		pthread_mutex_destroy(&(data->launcher));
 		return (return_error("mutex_init: failed watchman init", -3));
+	}
 	if (pthread_mutex_init(&(data->whistleblower), NULL) != 0)
+	{
+		pthread_mutex_destroy(&(data->launcher));
+		pthread_mutex_destroy(&(data->watchman));
 		return (return_error("mutex_init: failed whistleblower init", -3));
+	}
 	return (0);
 }
 

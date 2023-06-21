@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:38:24 by twang             #+#    #+#             */
-/*   Updated: 2023/06/21 13:03:28 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/21 14:38:50 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ static void	_sleeping(t_philo *philo)
 		return ;
 	philo->start_sleep = get_current_time(philo);
 	philo->end_sleep = add_time(philo->start_sleep, \
-												philo->shared->time_to_eat);
+												philo->shared->time_to_sleep);
 	pthread_mutex_lock(&(philo->shared->whistleblower));
 	if (display_routine(philo->shared, philo->id, "is sleeping") != 0)
 	{
