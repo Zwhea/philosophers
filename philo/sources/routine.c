@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:38:24 by twang             #+#    #+#             */
-/*   Updated: 2023/06/19 18:16:50 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/21 13:03:28 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	routine_philosophers(t_data *data)
 	int	i;
 
 	i = 0;
-	pthread_mutex_lock(&(data->watchman));
+	pthread_mutex_lock(&(data->launcher));
 	while (i < data->nb_of_philo)
 	{
 		if (pthread_create(&data->table[i].thread_id, NULL, (void *)_routine, \
@@ -36,18 +36,18 @@ int	routine_philosophers(t_data *data)
 	}
 	if (gettimeofday(&data->time_to_start, NULL) == -1)
 		return (return_error("get time of day: failed", -5));
-	pthread_mutex_unlock(&(data->watchman));
+	pthread_mutex_unlock(&(data->launcher));
 	return (0);
 }
 
 static int	_routine(t_philo *philo)
 {
 	philo->is_dead = false;
-	pthread_mutex_lock(&(philo->shared->watchman));
-	pthread_mutex_unlock(&(philo->shared->watchman));
+	pthread_mutex_lock(&(philo->shared->launcher));
+	pthread_mutex_unlock(&(philo->shared->launcher));
 	philo->lifespan = philo->shared->time_to_die;
 	if (philo->id % 2 != 0)
-		usleep(philo->shared->time_to_eat.tv_usec * 0.8);
+		usleep(40000);
 	while (!(philo->is_dead))
 	{
 		pthread_mutex_lock(&(philo->shared->watchman));
@@ -81,6 +81,7 @@ static void	_thinking(t_philo *philo)
 	while (philo->id != left || philo->id != right \
 				|| &(philo->left_fork) == philo->right_fork)
 	{
+		usleep(philo->shared->nb_of_philo * 10);
 		if (is_he_dead(philo) != false)
 			return ;
 		left = take_fork(philo, &(philo->m_left_fork), &(philo->left_fork));
@@ -93,10 +94,8 @@ static void	_eating(t_philo *philo)
 	if (philo->is_dead)
 		return ;
 	philo->start_meal = get_current_time(philo);
-	philo->end_meal = add_timeval(philo->start_meal, \
-												philo->shared->time_to_eat);
-	philo->lifespan = add_timeval(philo->start_meal, \
-												philo->shared->time_to_die);
+	philo->end_meal = add_time(philo->start_meal, philo->shared->time_to_eat);
+	philo->lifespan = add_time(philo->start_meal, philo->shared->time_to_die);
 	pthread_mutex_lock(&(philo->shared->whistleblower));
 	if (display_routine(philo->shared, philo->id, "is eating") != 0)
 	{
@@ -106,6 +105,7 @@ static void	_eating(t_philo *philo)
 	pthread_mutex_unlock(&(philo->shared->whistleblower));
 	while (timeval_is_inf(get_current_time(philo), philo->end_meal) != false)
 	{
+		usleep(philo->shared->nb_of_philo * 10);
 		if (is_he_dead(philo) != false)
 		{
 			give_fork(philo);
@@ -122,7 +122,7 @@ static void	_sleeping(t_philo *philo)
 	if (philo->is_dead)
 		return ;
 	philo->start_sleep = get_current_time(philo);
-	philo->end_sleep = add_timeval(philo->start_sleep, \
+	philo->end_sleep = add_time(philo->start_sleep, \
 												philo->shared->time_to_eat);
 	pthread_mutex_lock(&(philo->shared->whistleblower));
 	if (display_routine(philo->shared, philo->id, "is sleeping") != 0)
@@ -135,8 +135,6 @@ static void	_sleeping(t_philo *philo)
 	{
 		if (is_he_dead(philo) != false)
 			return ;
-		// pthread_mutex_lock(&(philo->shared->watchman));
-		// usleep(philo->shared->nb_of_philo * 10);
-		// pthread_mutex_unlock(&(philo->shared->watchman));
+		usleep(philo->shared->nb_of_philo * 10);
 	}
 }

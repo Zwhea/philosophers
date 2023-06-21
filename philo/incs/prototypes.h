@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:50:59 by twang             #+#    #+#             */
-/*   Updated: 2023/06/19 14:41:16 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/21 13:03:28 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int				routine_philosophers(t_data *data);
 bool			timeval_is_inf(struct timeval a, struct timeval b);
 struct timeval	int_to_timeval(int time_in_int);
 struct timeval	substract_timeval(struct timeval a, struct timeval b);
-struct timeval	add_timeval(struct timeval a, struct timeval b);
+struct timeval	add_time(struct timeval a, struct timeval b);
 struct timeval	get_current_time(t_philo *philo);
 
 /*---- utils.c ---------------------------------------------------------------*/

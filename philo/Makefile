@@ -6,7 +6,7 @@
 #    By: twang <twang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 14:09:46 by twang             #+#    #+#              #
-#    Updated: 2023/06/14 09:45:14 by twang            ###   ########.fr        #
+#    Updated: 2023/06/21 11:48:59 by twang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJ_DIR		=	.objs
 
 #--flags-----------------------------------------------------------------------#
 
-CFLAGS		=	-Wall -Wextra -I $(INC_DIR) #-Werror
+CFLAGS		=	-Wall -Wextra -Werror -I $(INC_DIR)
 
 #--debug & leaks flags---------------------------------------------------------#
 
@@ -85,7 +85,7 @@ debug_thread:
 leaks:
 	clear
 	$(MAKE) re -j VALGRIND=yes
-	$(LEAKS) ./philo 5 200 200 200 200
+	$(LEAKS) ./philo 5 800 200 200 5
 
 #--print header----------------------------------------------------------------#
 

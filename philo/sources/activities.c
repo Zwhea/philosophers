@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:01:27 by twang             #+#    #+#             */
-/*   Updated: 2023/06/19 14:41:02 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/21 11:42:46 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	take_fork(t_philo *philo, pthread_mutex_t *mutex, int *fork)
 	int	winner;
 
 	winner = 0;
+	(void)mutex;
 	pthread_mutex_lock(mutex);
 	if (*fork == 0)
 	{

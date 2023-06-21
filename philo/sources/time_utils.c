@@ -6,7 +6,7 @@
 /*   By: twang <twang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:56:53 by twang             #+#    #+#             */
-/*   Updated: 2023/06/16 13:14:33 by twang            ###   ########.fr       */
+/*   Updated: 2023/06/21 13:03:28 by twang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ struct timeval	substract_timeval(struct timeval a, struct timeval b)
 	return (result);
 }
 
-struct timeval	add_timeval(struct timeval a, struct timeval b)
+struct timeval	add_time(struct timeval a, struct timeval b)
 {
 	struct timeval	result;
 
