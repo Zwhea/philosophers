@@ -53,20 +53,8 @@ This project is part of the curriculum at 42 School, where students learn variou
 
 ## Resources
 
-- [Concurrency in C](https://www.cs.cf.ac.uk/Dave/C/CE.html)
-
-- [La page de manuel pthreads](https://man7.org/linux/man-pages/man7/pthreads.7.html)
-
-- [La page de manuel des fonctions système en C](https://man7.org/linux/man-pages/man2/)
-
-- [The Little Book of Semaphores](http://greenteapress.com/wp/semaphores/)
-
-- [POSIX Threads Programming](https://www.cs.cf.ac.uk/Dave/C/CE.html)
-
-- [Thread Synchronization in C](https://www.geeksforgeeks.org/thread-synchronization-in-c/)
-
-- [Introduction to Multithreading in C](https://www.tutorialspoint.com/multithreading-in-c)
-
-- [C Programming - Multithreading](https://www.studytonight.com/c/multithreading-in-c.php)
-
 - [Introduction to Thread](https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2)
+
+- [Optimisations in C -fr](http://tuan.kuranes.free.fr/ecrits/optimisation.html)
+
+- [Philo visualizer](http://tuan.kuranes.free.fr/ecrits/optimisation.html)
